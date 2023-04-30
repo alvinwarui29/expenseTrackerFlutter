@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
+  Expenses({super.key});
   @override
   State<Expenses> createState() {
     return _ExpensesState();
@@ -9,5 +10,9 @@ class Expenses extends StatefulWidget {
 
 class _ExpensesState extends State<Expenses> {
   @override
-  Widget build(context) {}
+  Widget build(context) {
+    return Column(
+      children: [Text('hello world')],
+    );
+  }
 }
