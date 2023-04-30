@@ -27,7 +27,9 @@ class _ExpensesState extends State<Expenses> {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [IconButton(onPressed: null, icon: Icon(Icons.add))],
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.add_box))
+        ],
         title: const Text('Expense Tracker'),
       ),
       body: Column(
