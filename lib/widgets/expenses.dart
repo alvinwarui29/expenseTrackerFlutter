@@ -23,12 +23,21 @@ class _ExpensesState extends State<Expenses> {
         date: DateTime.now(),
         category: Category.Food),
   ];
+
+  void _addExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const Text('Modal bottom sheet'),
+    );
+  }
+
   @override
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add_box))
+          IconButton(
+              onPressed: _addExpenseOverlay, icon: const Icon(Icons.add_box))
         ],
         title: const Text('Expense Tracker'),
       ),
