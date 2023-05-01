@@ -47,7 +47,11 @@ class _NewExpenseState extends State<NewExpense> {
                   },
                   child: const Text('Save expense')),
               const Spacer(),
-              TextButton(onPressed: () {}, child: const Text('Cancel')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancel')),
             ],
           )
         ],
