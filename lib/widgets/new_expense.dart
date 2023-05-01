@@ -16,6 +16,7 @@ class NewExpense extends StatefulWidget {
 class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  Categoryy _selectedCategoty = Categoryy.Food;
   DateTime? _selectedDate;
   void _presentDayPicker() async {
     final now = DateTime.now();
@@ -84,16 +85,22 @@ class _NewExpenseState extends State<NewExpense> {
             child: Row(
               children: [
                 DropdownButton(
+                    value: _selectedCategoty,
                     items: Categoryy.values
                         .map(
                           (category) => DropdownMenuItem(
                             value: category,
-                            child: Text(category.name),
+                            child: Text(category.name.toUpperCase()),
                           ),
                         )
                         .toList(),
                     onChanged: (value) {
-                      print(value);
+                      if (value == null) {
+                        return;
+                      }
+                      setState(() {
+                        _selectedCategoty = value;
+                      });
                     }),
                 ElevatedButton(
                     onPressed: () {
