@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
-  NewExpense({super.key});
+  const NewExpense({super.key});
   @override
   State<NewExpense> createState() {
     return _NewExpenseState();
@@ -11,6 +11,16 @@ class NewExpense extends StatefulWidget {
 class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  void _presentDayPicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    showDatePicker(
+        context: context,
+        initialDate: now,
+        firstDate: firstDate,
+        lastDate: now);
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -21,9 +31,8 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
+        padding: const EdgeInsets.all(16),
+        child: Column(children: [
           TextField(
             controller: _titleController,
             maxLength: 50,
@@ -32,30 +41,52 @@ class _NewExpenseState extends State<NewExpense> {
               label: Text('Title'),
             ),
           ),
-          TextField(
-            controller: _amountController,
-            maxLength: 10,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(label: Text('Enter amount')),
-          ),
           Row(
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    print(_titleController);
-                    print(_amountController);
-                  },
-                  child: const Text('Save expense')),
-              const Spacer(),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Cancel')),
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  decoration:
+                      const InputDecoration(label: Text('Enter amount')),
+                ),
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('selected date'),
+                  IconButton(
+                    onPressed: _presentDayPicker,
+                    icon: const Icon(Icons.calendar_month),
+                  )
+                ],
+              ))
             ],
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      print(_titleController);
+                      print(_amountController);
+                    },
+                    child: const Text('Save expense')),
+                const Spacer(),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Cancel')),
+              ],
+            ),
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
