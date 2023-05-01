@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:expensetracker/models/expense.dart';
 
 final formatter = DateFormat.yMd();
 
@@ -81,13 +83,24 @@ class _NewExpenseState extends State<NewExpense> {
           Expanded(
             child: Row(
               children: [
+                DropdownButton(
+                    items: Categoryy.values
+                        .map(
+                          (category) => DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      print(value);
+                    }),
                 ElevatedButton(
                     onPressed: () {
                       print(_titleController);
                       print(_amountController);
                     },
                     child: const Text('Save expense')),
-                const Spacer(),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);

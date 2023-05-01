@@ -17,12 +17,12 @@ class _ExpensesState extends State<Expenses> {
         title: 'Fare',
         amount: 23.11,
         date: DateTime.now(),
-        category: Category.travel),
+        category: Categoryy.travel),
     Expense(
         title: 'Food',
         amount: 12,
         date: DateTime.now(),
-        category: Category.Food),
+        category: Categoryy.Food),
   ];
 
   void _addExpenseOverlay() {
