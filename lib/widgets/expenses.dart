@@ -12,21 +12,11 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<Expense> _registeredExpenses = [
-    Expense(
-        title: 'Fare',
-        amount: 23.11,
-        date: DateTime.now(),
-        category: Categoryy.travel),
-    Expense(
-        title: 'Food',
-        amount: 12,
-        date: DateTime.now(),
-        category: Categoryy.Food),
-  ];
+  final List<Expense> _registeredExpenses = [];
 
   void _addExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (context) => NewExpense(onAddExpense: _addExpense),
     );
