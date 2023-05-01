@@ -102,6 +102,7 @@ class _NewExpenseState extends State<NewExpense> {
                         _selectedCategoty = value;
                       });
                     }),
+                const Spacer(),
                 ElevatedButton(
                     onPressed: () {
                       print(_titleController);
